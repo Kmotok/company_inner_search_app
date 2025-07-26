@@ -123,8 +123,9 @@ def initialize_retriever():
     
     # チャンク分割用のオブジェクトを作成
     text_splitter = CharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50,
+        #【問題2】チャンク分割の設定
+        chunk_size=ct.CHUNK_SIZE,
+        chunk_overlap=ct.CHUNK_OVERLAP,
         separator="\n"
     )
 
@@ -135,8 +136,8 @@ def initialize_retriever():
     db = Chroma.from_documents(splitted_docs, embedding=embeddings)
 
     # ベクターストアを検索するRetrieverの作成
-    st.session_state.retriever = db.as_retriever(search_kwargs={"k": 3})
-
+    # 【問題1】ベクターストレージから取り出してプロンプトに埋め込む関連ドキュメントの数が「3」となっています。これを「5」に変更
+    st.session_state.retriever = db.as_retriever(search_kwargs={"k": 5})
 
 def initialize_session_state():
     """

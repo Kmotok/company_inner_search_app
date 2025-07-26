@@ -56,6 +56,9 @@ WEB_URL_LOAD_TARGETS = [
     "https://generative-ai.web-camp.io/"
 ]
 
+# 【問題2】チャンク分割のマジックナンバーを変数化
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
 
 # ==========================================
 # プロンプトテンプレート
